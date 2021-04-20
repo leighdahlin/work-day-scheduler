@@ -25,6 +25,10 @@ textarea {
   white-space: pre-wrap;
 }
 
+.container {
+  padding: 4%;
+}
+
 .input-group {
   display: flex;
   align-items: center;
