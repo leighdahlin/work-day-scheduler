@@ -1,6 +1,13 @@
 dateDisplayEl = $('#currentDay');
-containerEl = $('.container')
-timesArray = ["9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"]
+containerEl = $('.container');
+timesArray = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+timeNowHH = moment().format("HH");
+timeNowHHmm = moment().format("HHmm");
+timeNowHH00 = moment().format("HH00");
+
+console.log(timeNowHH);
+console.log(timeNowHHmm);
+console.log(timeNowHH00);
 
 
 function displayDate() {
@@ -20,11 +27,15 @@ function createTimeBlocks() {
 
         var createLi = $('<li>');
         createLi.addClass('list-group-item hour');
-        createLi.text(timesArray[i]);
         
 
         var createLabel = $('<label>')
         createLabel.attr('for', 'planner' + i);
+        if(timesArray[i] > 8 && timesArray[i] < 12) {
+            createLabel.text(timesArray[i] + "am");
+        } else {
+            createLabel.text(timesArray[i] + "pm");
+        }
 
         createLi.append(createLabel);
 
@@ -53,9 +64,40 @@ function createTimeBlocks() {
     
 }
 
+function colorCode() {
+    
+   for (i = 0; i < timesArray.length; i++) { 
+    var inputId = 'planner' + i;
+
+    var inputSelector = $('#'+ inputId);
+
+        if(timesArray[i] > 8 && timesArray[i] <= 12) {
+
+            if (timeNowHH == timesArray[i]) {
+                inputSelector.addClass('present');
+            } else if(timeNowHH > timesArray[i]){
+                inputSelector.addClass('past');
+            } else if(timesNowHH < timesArray[i]) {
+                inputSelector.addClass('future');
+            }
+        } else {
+            var newTime = timesArray[i] + 12;
+            if (timeNowHH == newTime) {
+                inputSelector.addClass('present');
+            } else if(timeNowHH > newTime) {
+                inputSelector.addClass('past');
+            } else if(timeNowHH < newTime) {
+                inputSelector.addClass('future');
+            }
+            
+        } 
+    }
+}
+
 function init() {
     displayDate();
     createTimeBlocks();
+    colorCode();
 };
 
 init();
