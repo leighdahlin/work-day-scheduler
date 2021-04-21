@@ -22,13 +22,12 @@ textarea {
 
 .jumbotron {
   text-align: center;
-  /* background-color: #ECA400; */
-  /* color: #1B4353; */
   border-radius: 0;
   border-bottom: 10px solid #99B0B0;
   background-image: url(../Images/wood-grain.jpg);
   background-size: cover; 
   color: #FCFAF0;
+  margin-bottom: 0px;
 
 }
 
@@ -36,8 +35,13 @@ textarea {
   white-space: pre-wrap;
 }
 
+.alert {
+  text-align: center;
+  padding-top: 3%;
+}
+
 .container {
-  padding: 4%;
+  padding: 2%;
 }
 
 .input-group {
@@ -82,13 +86,13 @@ li, button {
 
 .past {
   background-color: #99B0B0;
-  opacity: .5;
+  opacity: .7;
   color: white;
 }
 
 .present {
   background-color: #EAB996;
-  opacity: .75;
+  opacity: .8;
   color: white;
 }
 
