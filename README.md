@@ -14,10 +14,10 @@ Key features of the calendar include:
     * Gray for hours past
     * Peach/red for currrent hour
     * Green for future hours
-* When you click the save button, an event listeners saves your entry to local storage
+* When you click the save button, an event listener saves your entry to local storage
 * When you want to update the entry, it will write over the previous data and store your new entry to local storage
 * A pop-up will also appear when the save button is clicked, notifying you about the entry you created
-* At midnight, the calenar is automatically cleared out for the next day
+* At midnight, the schedule is automatically cleared for the next day
 * Bootstap input and button components, modified for the calendar entries
 * Third-Party APIs:
     * Bootstrap
