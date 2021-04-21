@@ -24,6 +24,7 @@ Key features of the calendar include:
     * jQuery
     * Google Fonts
 * Appealing design
+* Media queries allow my page to be responsive on smaller screens
 
 ## Link to Deploy
 
