@@ -14,7 +14,7 @@ Key features of the calendar include:
 
 ## Link to Deploy
 
-[Workday Calendar](https://leighdahlin.github.io/leigh-dahlin-homework5/)
+[Workday Calendar](https://leighdahlin.github.io/homework5/)
 
 ## Screenshots
 

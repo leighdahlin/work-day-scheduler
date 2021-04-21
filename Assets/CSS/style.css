@@ -1,7 +1,14 @@
+
+/* Background images obtained from: www.pexels.com/ */
+/* Color palette generated from https://colorhunt.co/ */
+/* Note to self: could add later button or modal to change backgrounds */
+
 body {
-  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  color: #1B4353;
+  background-color: #FCFAF0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 textarea {
@@ -15,10 +22,14 @@ textarea {
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
-  color: black;
+  /* background-color: #ECA400; */
+  /* color: #1B4353; */
   border-radius: 0;
-  border-bottom: 10px solid black;
+  border-bottom: 10px solid #99B0B0;
+  background-image: url(../Images/wood-grain.jpg);
+  background-size: cover; 
+  color: #FCFAF0;
+
 }
 
 .description {
@@ -56,12 +67,6 @@ li, button {
   margin: .25%;
 }
 
-/* #time {
-  height: 100%;
-  border-top: solid 2px gray;
-  border-bottom: solid 2px gray;;
-} */
-
 .list-group-item {
   padding: .64rem;
   width: 75px;
@@ -76,24 +81,29 @@ li, button {
 }
 
 .past {
-  background-color: #d3d3d3;
+  background-color: #99B0B0;
+  opacity: .5;
   color: white;
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #EAB996;
+  opacity: .75;
   color: white;
 }
 
 .future {
-  background-color: #77dd77;
+  background-color: #3B9778;
+  opacity: .45;
   color: white;
 }
 
 .btn {
   border-top-left-radius: 0rem;
   border-bottom-left-radius: 0rem;
+  border:  #99B0B0; 
   width: 50px;
+  background-color: #90CDD0;
 }
 
 .saveBtn {
