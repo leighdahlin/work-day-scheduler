@@ -1,20 +1,23 @@
+//Assign variables
 var dateDisplayEl = $('#currentDay');
 var containerEl = $('.container');
-var timesArray = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5];
+var timesArray = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5]; //Array with each hour I want to display on the page
 var timeNowHH = moment().format("HH");
 var alertEl = $('.alert')
 
+//Displays the date at the top of the page using moment
 function displayDate() {
     var rightNow = moment().format('dddd, MMMM Do');
     dateDisplayEl.text(rightNow);
 
 };
 
+//Creates each time block and populates it with the time for each hour
 function createTimeBlocks() {
     
-    for(i = 0; i < timesArray.length; i++) {
+    for(i = 0; i < timesArray.length; i++) { //for each time in the timesArray, a time block is created
         var createUl = $('<ul>');
-        createUl.addClass('list-group list-group-horizontal')
+        createUl.addClass('list-group list-group-horizontal') //Bootstrap classes for formatting
 
         var createLi = $('<li>');
         createLi.addClass('list-group-item hour');
@@ -22,7 +25,7 @@ function createTimeBlocks() {
 
         var createLabel = $('<label>')
         createLabel.attr('for', 'planner' + i);
-        if(timesArray[i] > 7 && timesArray[i] < 12) {
+        if(timesArray[i] > 7 && timesArray[i] < 12) { //if statement to determine if am or pm
             createLabel.text(timesArray[i] + "am");
         } else {
             createLabel.text(timesArray[i] + "pm");
@@ -42,7 +45,7 @@ function createTimeBlocks() {
         createButton.attr('type', 'button');
         createButton.attr('id', 'button' + i);
 
-        var createI = $('<i>');
+        var createI = $('<i>'); //creating the save icon
         createI.addClass('fa fa-save');
 
         createButton.append(createI);
@@ -56,15 +59,16 @@ function createTimeBlocks() {
     
 }
 
+//determines past, present and future for coloring of time blocks
 function colorCode() {
     
    for (i = 0; i < timesArray.length; i++) { 
     var inputId = 'planner' + i;
     var inputSelector = $('#'+ inputId);
 
-        if(timesArray[i] > 7 && timesArray[i] <= 12) {
+        if(timesArray[i] > 7 && timesArray[i] <= 12) { //for the am times
 
-            if (timeNowHH == timesArray[i]) {
+            if (timeNowHH == timesArray[i]) { //compares the time to moment in HH format
                 inputSelector.addClass('present');
             } else if(timeNowHH > timesArray[i]){
                 inputSelector.addClass('past');
@@ -72,8 +76,8 @@ function colorCode() {
                 inputSelector.addClass('future');
             }
         } else {
-            var newTime = timesArray[i] + 12;
-            if (timeNowHH == newTime) {
+            var newTime = timesArray[i] + 12; //for the pm times
+            if (timeNowHH == newTime) { //compares the time to moment in HH format
                 inputSelector.addClass('present');
             } else if(timeNowHH > newTime) {
                 inputSelector.addClass('past');
@@ -85,7 +89,7 @@ function colorCode() {
     }
 }
 
-
+//adds event listener for each button to save the time block entry to local storage and display it at the top of the page for 3.5 seconds
 function saveData() {
 
         $('#button0').on("click", function() {
@@ -206,6 +210,7 @@ function saveData() {
     // }
 };
 
+//for each time block, gets information saved to local storage to display
 function getData() {
 
 var EightAmInput = $('#planner0');
@@ -250,13 +255,14 @@ FivePmInput.val(calendarItem);
 
 }
 
+//At midnight, the calendar is cleared
 function clearDay() {
     if (timeNowHH == 24) {
         localStorage.clear();
     }
 }
 
-
+//function to initialize all functions to run
 function init() {
     displayDate();
     createTimeBlocks();
