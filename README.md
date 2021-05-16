@@ -28,8 +28,14 @@ Key features of the calendar include:
 
 ## Link to Deploy
 
-[Workday Calendar](https://leighdahlin.github.io/homework5/)
+[Workday Calendar](https://leighdahlin.github.io/work-day-scheduler/)
 
 ## Screenshots
 
 ![Screenshot of Calendar](Assets/Images/calendar-screenshot.png)
+
+##  License & Copyright
+
+(c) Leigh Dahlin, UC Davis Coding Bootcamp
+
+Licensed under the [MIT License](License.md)
