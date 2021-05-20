@@ -33,9 +33,10 @@ function createTimeBlocks() {
 
         createLi.append(createLabel);
 
-        var createInput = $('<input>');
-        createInput.addClass('form-control');
-        createInput.attr('type', 'textarea');
+        var createInput = $('<textarea>');
+        createInput.addClass('form-control md-textara');
+        createInput.attr('type', 'test');
+        createInput.attr('rows','3')
         createInput.attr('id', 'planner' + i);
         createInput.attr('aria-describedby', 'button-addon2');
         
@@ -89,125 +90,148 @@ function colorCode() {
     }
 }
 
+
 //adds event listener for each button to save the time block entry to local storage and display it at the top of the page for 3.5 seconds
+//[0].childNodes[1]
 function saveData() {
 
-        $('#button0').on("click", function() {
-            var calendarEntry = $('#planner0').val();
-            localStorage.setItem('#planner0', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[0] + "am.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+    $('.save-btn').on("click", function(event){
+        indexVal = event.currentTarget.id.charAt(event.currentTarget.id.length - 1)
+        console.log(indexVal)
+        
+        var calendarEntry = $('#planner'+indexVal).val();
+        console.log(calendarEntry)
 
-        $('#button1').on("click", function() {
-            var calendarEntry = $('#planner1').val();
-            localStorage.setItem('#planner1', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[1] + "am.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+        localStorage.setItem('#planner'+indexVal, calendarEntry);
+        if (calendarEntry !== "") {
+            alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[indexVal] + "am.");
+            setTimeout(function(){
+                alertEl.text("")
+            }, 3500);
+        }
 
-        $('#button2').on("click", function() {
-            var calendarEntry = $('#planner2').val();
-            localStorage.setItem('#planner2', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[2] + "am.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+        // console.log(event.currentTarget)
+        // console.log($('.form-control'));
+    });
 
-        $('#button3').on("click", function() {
-            var calendarEntry = $('#planner3').val();
-            localStorage.setItem('#planner3', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[3] + "am.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+    $('#button0').on("click", function() {
 
-        $('#button4').on("click", function() {
-            var calendarEntry = $('#planner4').val();
-            localStorage.setItem('#planner4', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[4] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+        console.log($('#planner0'));
+        // var calendarEntry = $('#planner0').val();
+        // localStorage.setItem('#planner0', calendarEntry);
+        // if (calendarEntry !== "") {
+        //     alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[0] + "am.");
+        //     setTimeout(function(){
+        //         alertEl.text("")
+        //     }, 3500);
+        // }
+    });
 
-        $('#button5').on("click", function() {
-            var calendarEntry = $('#planner5').val();
-            localStorage.setItem('#planner5', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[5] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+//         $('#button1').on("click", function() {
+//             var calendarEntry = $('#planner1').val();
+//             localStorage.setItem('#planner1', calendarEntry);
+//             if (calendarEntry !== "") {
+//                 alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[1] + "am.");
+//                 setTimeout(function(){
+//                     alertEl.text("")
+//                 }, 3500);
+//             }
+//         });
 
-        $('#button6').on("click", function() {
-            var calendarEntry = $('#planner6').val();
-            localStorage.setItem('#planner6', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[6] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+//         $('#button2').on("click", function() {
+//             var calendarEntry = $('#planner2').val();
+//             localStorage.setItem('#planner2', calendarEntry);
+//             if (calendarEntry !== "") {
+//                 alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[2] + "am.");
+//                 setTimeout(function(){
+//                     alertEl.text("")
+//                 }, 3500);
+//             }
+//         });
 
-        $('#button7').on("click", function() {
-            var calendarEntry = $('#planner7').val();
-            localStorage.setItem('#planner7', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[7] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+//         $('#button3').on("click", function() {
+//             var calendarEntry = $('#planner3').val();
+//             localStorage.setItem('#planner3', calendarEntry);
+//             if (calendarEntry !== "") {
+//                 alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[3] + "am.");
+//                 setTimeout(function(){
+//                     alertEl.text("")
+//                 }, 3500);
+//             }
+//         });
 
-        $('#button8').on("click", function() {
-            var calendarEntry = $('#planner8').val();
-            console.log(calendarEntry);
-            console.log("You clicked a button!");
-            localStorage.setItem('#planner8', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[8] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+//         $('#button4').on("click", function() {
+//             var calendarEntry = $('#planner4').val();
+//             localStorage.setItem('#planner4', calendarEntry);
+//             if (calendarEntry !== "") {
+//                 alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[4] + "pm.");
+//                 setTimeout(function(){
+//                     alertEl.text("")
+//                 }, 3500);
+//             }
+//         });
 
-        $('#button9').on("click", function() {
-            var calendarEntry = $('#planner9').val();
-            console.log(calendarEntry);
-            console.log("You clicked a button!");
-            localStorage.setItem('#planner9', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[9] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+//         $('#button5').on("click", function() {
+//             var calendarEntry = $('#planner5').val();
+//             localStorage.setItem('#planner5', calendarEntry);
+//             if (calendarEntry !== "") {
+//                 alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[5] + "pm.");
+//                 setTimeout(function(){
+//                     alertEl.text("")
+//                 }, 3500);
+//             }
+//         });
+
+//         $('#button6').on("click", function() {
+//             var calendarEntry = $('#planner6').val();
+//             localStorage.setItem('#planner6', calendarEntry);
+//             if (calendarEntry !== "") {
+//                 alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[6] + "pm.");
+//                 setTimeout(function(){
+//                     alertEl.text("")
+//                 }, 3500);
+//             }
+//         });
+
+//         $('#button7').on("click", function() {
+//             var calendarEntry = $('#planner7').val();
+//             localStorage.setItem('#planner7', calendarEntry);
+//             if (calendarEntry !== "") {
+//                 alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[7] + "pm.");
+//                 setTimeout(function(){
+//                     alertEl.text("")
+//                 }, 3500);
+//             }
+//         });
+
+//         $('#button8').on("click", function() {
+//             var calendarEntry = $('#planner8').val();
+//             console.log(calendarEntry);
+//             console.log("You clicked a button!");
+//             localStorage.setItem('#planner8', calendarEntry);
+//             if (calendarEntry !== "") {
+//                 alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[8] + "pm.");
+//                 setTimeout(function(){
+//                     alertEl.text("")
+//                 }, 3500);
+//             }
+//         });
+
+//         $('#button9').on("click", function() {
+//             var calendarEntry = $('#planner9').val();
+//             console.log(calendarEntry);
+//             console.log("You clicked a button!");
+//             localStorage.setItem('#planner9', calendarEntry);
+//             if (calendarEntry !== "") {
+//                 alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[9] + "pm.");
+//                 setTimeout(function(){
+//                     alertEl.text("")
+//                 }, 3500);
+//             }
+//         });
 
     
-    // }
+//     // }
 };
 
 //for each time block, gets information saved to local storage to display

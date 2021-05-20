@@ -77,7 +77,7 @@ li, button {
 .list-group-item {
   padding: .64rem;
   width: 75px;
-  
+  height: 84px;
 }
 
 .form-control {
@@ -110,6 +110,7 @@ li, button {
   border-bottom-left-radius: 0rem;
   border:  #99B0B0; 
   width: 50px;
+  height: 84px;
   background-color: #90CDD0;
 }
 
@@ -128,9 +129,9 @@ li, button {
 
 @media screen and (max-width: 992px) {
 
-  .alert {
-    padding: 1%;
-  }
+  /* .alert {
+    padding: 2%;
+  } */
 
   .container {
     padding-top: 0%;
