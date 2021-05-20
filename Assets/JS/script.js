@@ -130,6 +130,21 @@ function saveData() {
 
 };
 
+//adds event listener for each delete button to remove the time block entry from local storage
+function deleteData() {
+
+    $('.delete-btn').on("click", function(event){
+        indexVal = event.currentTarget.id.charAt(event.currentTarget.id.length - 1)
+        console.log(indexVal)
+        
+        // var calendarEntry = $('#planner'+indexVal).val();
+        // console.log(calendarEntry)
+
+        localStorage.removeItem('#planner'+indexVal);
+    });
+
+};
+
 //for each time block, gets information saved to local storage to display
 function getData() {
 
@@ -188,6 +203,7 @@ function init() {
     createTimeBlocks();
     colorCode();
     saveData();
+    deleteData();
     getData();
     clearDay();
 };
@@ -195,6 +211,7 @@ function init() {
 //Updates the date every second so that the functions are keeping everything up to date
 setInterval(displayDate, 1000);
 setInterval(colorCode, 1000);
+setInterval(getData,10);
 setInterval(clearDay, 1000);
 
 
