@@ -46,6 +46,22 @@ textarea {
   padding-top: 1%;
 }
 
+.week-cards {
+  padding-top: 2%;
+  padding-right: 15%;
+  padding-left: 15%;
+  padding-bottom: 0%;
+}
+
+.week-card-explain {
+  text-align: center;
+}
+
+.week:hover{
+  cursor: pointer;
+  background-color: #e0e7e7;
+}
+
 .input-group {
   display: flex;
   align-items: center;

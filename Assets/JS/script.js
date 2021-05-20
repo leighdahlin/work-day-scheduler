@@ -3,7 +3,13 @@ var dateDisplayEl = $('#currentDay');
 var containerEl = $('.container');
 var timesArray = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5]; //Array with each hour I want to display on the page
 var timeNowHH = moment().format("HH");
-var alertEl = $('.alert')
+var alertEl = $('.alert');
+var mondayEl = $('#monday');
+var tuesdayEl = $('#tuesday');
+var wednesdayEl = $('#wednesday');
+var thursdayEl = $('#thursday');
+var fridayEl = $('#friday');
+
 
 //Displays the date at the top of the page using moment
 function displayDate() {
@@ -11,6 +17,40 @@ function displayDate() {
     dateDisplayEl.text(rightNow);
 
 };
+
+function highlightToday() {
+    var today = moment().format('dddd').toLowerCase();
+    var date = moment().format('MM/DD')
+    console.log(today==="thursday")
+    // console.log(mondayEl.attr('id')===today)
+    console.log(mondayEl.parent().parent())
+
+    // mondayEl.text()
+
+    switch (today) {
+        case "monday":
+            mondayEl.parent().parent().css('background-color','gray');
+
+            break;
+        case "tuesday":
+            tuesdayEl.parent().parent().css('background-color','gray');
+
+            break;
+        case "wednesday":
+            wednesdayEl.parent().parent().css('background-color','gray');
+
+            break;
+        case "thursday":
+            thursdayEl.parent().parent().css('background','gray');
+
+            break;
+        case "friday":
+            fridayEl.parent().parent().css('background-color','gray');
+
+            break;  
+    }
+
+}
 
 //Creates each time block and populates it with the time for each hour
 function createTimeBlocks() {
@@ -58,12 +98,7 @@ function createTimeBlocks() {
         deleteButton.attr('type', 'button');
         deleteButton.attr('aria-label', 'Close');
         deleteButton.attr('id', 'buttonD' + i);
-        deleteButton.html("&#10006");
-
-        // var spanX = $('<span>');
-        // spanX.attr('aria-hidden','true')
-        // spanX.text("#10006");
-        // deleteButton.append(spanX);
+        deleteButton.html("&#10006"); //unicode for X
 
         buttonDiv.append(createButton);
         buttonDiv.append(deleteButton);
@@ -169,6 +204,7 @@ function clearDay() {
 //function to initialize all functions to run
 function init() {
     displayDate();
+    highlightToday();
     createTimeBlocks();
     colorCode();
     saveData();
