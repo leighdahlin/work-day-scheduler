@@ -137,10 +137,11 @@ function deleteData() {
         indexVal = event.currentTarget.id.charAt(event.currentTarget.id.length - 1)
         console.log(indexVal)
         
-        // var calendarEntry = $('#planner'+indexVal).val();
-        // console.log(calendarEntry)
+        var calendarEntry = $('#planner'+indexVal)
 
         localStorage.removeItem('#planner'+indexVal);
+        calendarEntry.val("");
+
     });
 
 };
@@ -148,46 +149,14 @@ function deleteData() {
 //for each time block, gets information saved to local storage to display
 function getData() {
 
-var EightAmInput = $('#planner0');
-var calendarItem = localStorage.getItem('#planner0');
-EightAmInput.val(calendarItem);
-
-var NineAmInput = $('#planner1');
-var calendarItem = localStorage.getItem('#planner1');
-NineAmInput.val(calendarItem);
-
-var TenAmInput = $('#planner2');
-var calendarItem = localStorage.getItem('#planner2');
-TenAmInput.val(calendarItem);
-
-var ElevenAmInput = $('#planner3');
-var calendarItem = localStorage.getItem('#planner3');
-ElevenAmInput.val(calendarItem);
-
-var TwelvePmInput = $('#planner4');
-var calendarItem = localStorage.getItem('#planner4');
-TwelvePmInput.val(calendarItem);
-
-var OnePmInput = $('#planner5');
-var calendarItem = localStorage.getItem('#planner5');
-OnePmInput.val(calendarItem);
-
-var TwoPmInput = $('#planner6');
-var calendarItem = localStorage.getItem('#planner6');
-TwoPmInput.val(calendarItem);
-
-var ThreePmInput = $('#planner7');
-var calendarItem = localStorage.getItem('#planner7');
-ThreePmInput.val(calendarItem);
-
-var FourPmInput = $('#planner8');
-var calendarItem = localStorage.getItem('#planner8');
-FourPmInput.val(calendarItem);
-
-var FivePmInput = $('#planner9');
-var calendarItem = localStorage.getItem('#planner9');
-FivePmInput.val(calendarItem);
-
+    for(i = 0; i < 10; i++) {
+       var inputEl = '#planner' + i;
+       var selectInput = $(inputEl)
+       var localStorageItem = localStorage.getItem(inputEl);
+       if(localStorageItem){
+           selectInput.val(localStorageItem);
+       } 
+    }
 }
 
 //At midnight, the calendar is cleared
