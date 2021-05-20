@@ -35,7 +35,7 @@ function createTimeBlocks() {
 
         var createInput = $('<input>');
         createInput.addClass('form-control');
-        createInput.attr('type', 'text');
+        createInput.attr('type', 'textarea');
         createInput.attr('id', 'planner' + i);
         createInput.attr('aria-describedby', 'button-addon2');
         
@@ -271,6 +271,12 @@ function init() {
     getData();
     clearDay();
 };
+
+//Updates the date every second so that the functions are keeping everything up to date
+setInterval(displayDate, 1000);
+setInterval(colorCode, 1000);
+setInterval(clearDay, 1000);
+
 
 init();
 
