@@ -62,6 +62,14 @@ textarea {
   background-color: #e0e7e7;
 }
 
+.highlight {
+  background-color: silver;
+}
+
+.not-highlight {
+  background-color: #fff;
+}
+
 .input-group {
   display: flex;
   align-items: center;
