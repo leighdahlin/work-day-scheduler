@@ -9,7 +9,11 @@ This work day scheduler is designed to assist you with your daily schedule. It w
 Key features of the calendar include:
 
 * Dynamic date at the top of the page that will update depending on the day
+* Calendar showing the dates for the week, the user can click on a date and the time blocks will pull the data for that day
+    * The current day is the default selected day
+    * When the user clicks on a different day, that day will become highlighted
 * Each time block is created dynamically using a jQuery for loop
+    * This makes it easy to change the time blocks all at once
 * Dynamic coloring for each input, depending on the time of day
     * Gray for hours past
     * Peach/red for currrent hour

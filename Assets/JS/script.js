@@ -112,8 +112,10 @@ function createTimeBlocks() {
         createLabel.attr('for', 'planner' + i);
         if(timesArray[i] > 7 && timesArray[i] < 12) { //if statement to determine if am or pm
             createLabel.text(timesArray[i] + "am");
+            createLi.attr('id',timesArray[i] + "am");
         } else {
             createLabel.text(timesArray[i] + "pm");
+            createLi.attr('id',timesArray[i] + "pm");
         }
 
         createLi.append(createLabel);
@@ -196,16 +198,17 @@ function saveData() {
         console.log(highlightedDay)
         
         indexVal = event.currentTarget.id.charAt(event.currentTarget.id.length - 1)
-        console.log(indexVal)
         
         var calendarEntry = $('#planner'+indexVal).val();
         console.log(calendarEntry)
+
+        entryTime = $(event.currentTarget).parent().parent().children()[0].id;
 
         // localStorage.setItem(moment().format('MM/DD') + '#planner'+indexVal, calendarEntry);
 
         localStorage.setItem(highlightedDay+'#planner'+indexVal, calendarEntry);
         if (calendarEntry !== "") {
-            alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[indexVal] + "am.");
+            alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + entryTime + " " + highlightedDay + "." );
             setTimeout(function(){
                 alertEl.text("")
             }, 3500);
