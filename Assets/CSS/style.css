@@ -39,29 +39,11 @@ textarea {
   padding-top: 1%;
 }
 
-.cardsNkey {
-  display: flex;
-}
-
-.key-container {
-  margin: 1%;
-}
-
-.key-container .list-group-item {
-  width: 100%;
-  height: 5%;
-  padding: 1rem;
-  width: 100px;
-  height: 55px;
-
-}
-
 .week-cards {
   padding-top: 2%;
-  padding-right: 5%;
-  padding-left: 5%;
+  padding-right: 10%;
+  padding-left: 10%;
   padding-bottom: 0%;
-  width: 80%;
 }
 
 .week-card-explain {
@@ -86,6 +68,16 @@ textarea {
   height: 20px;
   padding: 3%;
   margin: 0px;
+}
+
+.keys {
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-bottom: 2%;
+}
+
+.keys .card-body {
+  padding: .5rem;
 }
 
 .input-group {
@@ -197,12 +189,41 @@ li, button {
     font-size: 2rem;
   }
 
-  .alert {
-    height: 2.25rem;
+  .keys {
+    flex-direction: row;
+    margin-left: 20%;
+    margin-right: 20%;
+    justify-content: center;
+    margin-bottom: .25%;
   }
 
-  .container {
-    padding-top: 3%;
+  .week-cards .card-group {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .week-cards {
+    padding-left: .5%;
+    padding-right: .5%;
+  }
+
+  .week {
+    height: 5rem;
+  }
+
+  .card-header{
+    padding: .5rem;
+    height: 100%;
+    padding-top: 1.75rem;
+  }
+
+  .week .card-body {
+    display: none;
+  }
+
+
+  .alert {
+    height: 3.2rem;
   }
 
 }
