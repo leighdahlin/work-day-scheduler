@@ -182,9 +182,11 @@ function colorCode() {
    for (i = 0; i < timesArray.length; i++) { 
     var inputId = 'planner' + i;
     var inputSelector = $('#'+ inputId);
-        console.log("Highlighted day: " + highlightedDay);
-        console.log("Today: " + todayMMDD);
+        //resets the classes for each time block before color coding them in the if statement below
+        inputSelector.attr('class','form-control md-textara');
+        //if the highlighted day is today, color codes the time blocks accordingly
         if(todayMMDD === highlightedDay && timesArray[i] > 7 && timesArray[i] <= 12) { //for the am times
+            console.log("Accessing this code!")
             if (timeNowHH == timesArray[i]) { //compares the time to moment in HH format
                 inputSelector.addClass('present');
             } else if(timeNowHH > timesArray[i]){
@@ -201,8 +203,14 @@ function colorCode() {
             } else if(timeNowHH < newTime) {
                 inputSelector.addClass('future');
             }
-            
-        } 
+        //if the highlighted day is before today, color code time blocks as 'past'
+        } else if (highlightedDay < todayMMDD){
+            inputSelector.addClass('past');
+        //if the highlighted day is after today, color code time blocks as 'future'
+        } else if (highlightedDay > todayMMDD) {
+            console.log("Future")
+            inputSelector.addClass('future');
+        }
     }
 }
 
@@ -322,8 +330,8 @@ function init() {
 
 //Updates the date every second so that the functions are keeping everything up to date
 setInterval(displayDate, 1000);
-setInterval(colorCode, 1000);
-// setInterval(getData,10);
+//Updates the color coding on the time blocks every half hour
+setInterval(colorCode, 50000);
 
 
 init();
