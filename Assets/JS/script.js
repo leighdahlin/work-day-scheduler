@@ -233,10 +233,17 @@ function saveData() {
 
         localStorage.setItem(highlightedDay+'#planner'+indexVal, calendarEntry);
         if (calendarEntry !== "") {
+            if(highlightedDay === todayMMDD) {
+            alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + entryTime + " today." );
+            setTimeout(function(){
+                alertEl.text("")
+            }, 3500);
+            } else {
             alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + entryTime + " on " + highlightedDay + "." );
             setTimeout(function(){
                 alertEl.text("")
             }, 3500);
+            }
         }
 
     });
