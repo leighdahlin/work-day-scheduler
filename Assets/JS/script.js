@@ -3,7 +3,18 @@ var dateDisplayEl = $('#currentDay');
 var containerEl = $('.container');
 var timesArray = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5]; //Array with each hour I want to display on the page
 var timeNowHH = moment().format("HH");
-var alertEl = $('.alert')
+var alertEl = $('.alert');
+var sundayEl = $('#sunday');
+var mondayEl = $('#monday');
+var tuesdayEl = $('#tuesday');
+var wednesdayEl = $('#wednesday');
+var thursdayEl = $('#thursday');
+var fridayEl = $('#friday');
+var saturdayEl = $('#saturday');
+var today = moment().format('dddd').toLowerCase();
+var todayMMDD = moment().format('MM/DD');
+var highlightedDay = moment().format('MM/DD');
+
 
 //Displays the date at the top of the page using moment
 function displayDate() {
@@ -11,6 +22,97 @@ function displayDate() {
     dateDisplayEl.text(rightNow);
 
 };
+
+function highlightToday() {
+    switch (today) {
+        case "sunday":
+            sundayEl.parent().parent().addClass('highlight');
+            break;
+        case "monday":
+            mondayEl.parent().parent().addClass('highlight');
+            break;
+        case "tuesday":
+            tuesdayEl.parent().parent().addClass('highlight');
+            break;
+        case "wednesday":
+            wednesdayEl.parent().parent().addClass('highlight');
+            break;
+        case "thursday":
+            thursdayEl.parent().parent().addClass('highlight');
+            break;
+        case "friday":
+            fridayEl.parent().parent().addClass('highlight');
+            break;  
+        case "saturday":
+            saturdayEl.parent().parent().addClass('highlight');
+            break;
+    }
+
+}
+
+//display the date in the calendar at the top of the html in MM/DD format for each block
+function calendarDates() {
+    var date = moment().format('MM/DD')
+    if(today === "sunday") {
+        sundayEl.text(date);
+        mondayEl.text(moment().add(1,'days').format('MM/DD'))
+        tuesdayEl.text(moment().add(2,'days').format('MM/DD'))
+        wednesdayEl.text(moment().add(3,'days').format('MM/DD'))
+        thursdayEl.text(moment().add(4,'days').format('MM/DD'))
+        fridayEl.text(moment().add(5,'days').format('MM/DD'))
+        saturdayEl.text(moment().add(6,'days').format('MM/DD'))
+    } else if(today === "monday") {
+        sundayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        mondayEl.text(date)
+        tuesdayEl.text(moment().add(1,'days').format('MM/DD'))
+        wednesdayEl.text(moment().add(2,'days').format('MM/DD'))
+        thursdayEl.text(moment().add(3,'days').format('MM/DD'))
+        fridayEl.text(moment().add(4,'days').format('MM/DD'))
+        saturdayEl.text(moment().add(5,'days').format('MM/DD'))
+    }
+    else if (today === "tuesday") {
+        sundayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        tuesdayEl.text(date)
+        wednesdayEl.text(moment().add(1,'days').format('MM/DD'))
+        thursdayEl.text(moment().add(2,'days').format('MM/DD'))
+        fridayEl.text(moment().add(3,'days').format('MM/DD'))
+        saturdayEl.text(moment().add(4,'days').format('MM/DD'))
+    } else if (today === "wednesday") {
+        sundayEl.text(moment().subtract(3,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        tuesdayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        wednesdayEl.text(date)
+        thursdayEl.text(moment().add(1,'days').format('MM/DD'))
+        fridayEl.text(moment().add(2,'days').format('MM/DD'))
+        saturdayEl.text(moment().add(3,'days').format('MM/DD'))
+    } else if (today === "thursday") {
+        sundayEl.text(moment().subtract(4,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(3,'days').format('MM/DD'))
+        tuesdayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        wednesdayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        thursdayEl.text(date)
+        fridayEl.text(moment().add(1,'days').format('MM/DD'))
+        saturdayEl.text(moment().add(2,'days').format('MM/DD'))
+    } else if (today === "friday") {
+        sundayEl.text(moment().subtract(5,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(4,'days').format('MM/DD'))
+        tuesdayEl.text(moment().subtract(3,'days').format('MM/DD'))
+        wednesdayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        thursdayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        fridayEl.text(date)
+        saturdayEl.text(moment().add(1,'days').format('MM/DD'))
+    } else if (today === "saturday") {
+        sun.text(moment().subtract(6,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(5,'days').format('MM/DD'))
+        tuesdayEl.text(moment().subtract(4,'days').format('MM/DD'))
+        wednesdayEl.text(moment().subtract(3,'days').format('MM/DD'))
+        thursdayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        fridayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        saturdayEl.text(date)
+    } 
+
+}
 
 //Creates each time block and populates it with the time for each hour
 function createTimeBlocks() {
@@ -27,15 +129,18 @@ function createTimeBlocks() {
         createLabel.attr('for', 'planner' + i);
         if(timesArray[i] > 7 && timesArray[i] < 12) { //if statement to determine if am or pm
             createLabel.text(timesArray[i] + "am");
+            createLi.attr('id',timesArray[i] + "am");
         } else {
             createLabel.text(timesArray[i] + "pm");
+            createLi.attr('id',timesArray[i] + "pm");
         }
 
         createLi.append(createLabel);
 
-        var createInput = $('<input>');
-        createInput.addClass('form-control');
-        createInput.attr('type', 'text');
+        var createInput = $('<textarea>');
+        createInput.addClass('form-control md-textara');
+        createInput.attr('type', 'test');
+        createInput.attr('rows','3')
         createInput.attr('id', 'planner' + i);
         createInput.attr('aria-describedby', 'button-addon2');
         
@@ -43,16 +148,28 @@ function createTimeBlocks() {
         var createButton = $('<button>');
         createButton.addClass('btn btn-info save-btn fa');
         createButton.attr('type', 'button');
-        createButton.attr('id', 'button' + i);
+        createButton.attr('id', 'buttonS' + i);
 
         var createI = $('<i>'); //creating the save icon
         createI.addClass('fa fa-save');
-
         createButton.append(createI);
+
+        var buttonDiv = $('<div>')
+        buttonDiv.addClass('btn-group-vertical');
+
+        var deleteButton = $('<button>');
+        deleteButton.addClass('btn btn-info delete-btn fa');
+        deleteButton.attr('type', 'button');
+        deleteButton.attr('aria-label', 'Close');
+        deleteButton.attr('id', 'buttonD' + i);
+        deleteButton.html("&#10006"); //unicode for X
+
+        buttonDiv.append(createButton);
+        buttonDiv.append(deleteButton);
 
         createUl.append(createLi);
         createUl.append(createInput);
-        createUl.append(createButton);
+        createUl.append(buttonDiv);
 
         containerEl.append(createUl);
     }
@@ -65,9 +182,11 @@ function colorCode() {
    for (i = 0; i < timesArray.length; i++) { 
     var inputId = 'planner' + i;
     var inputSelector = $('#'+ inputId);
-
-        if(timesArray[i] > 7 && timesArray[i] <= 12) { //for the am times
-
+        //resets the classes for each time block before color coding them in the if statement below
+        inputSelector.attr('class','form-control md-textara');
+        //if the highlighted day is today, color codes the time blocks accordingly
+        if(todayMMDD === highlightedDay && timesArray[i] > 7 && timesArray[i] <= 12) { //for the am times
+            console.log("Accessing this code!")
             if (timeNowHH == timesArray[i]) { //compares the time to moment in HH format
                 inputSelector.addClass('present');
             } else if(timeNowHH > timesArray[i]){
@@ -75,7 +194,7 @@ function colorCode() {
             } else if(timeNowHH < timesArray[i]) {
                 inputSelector.addClass('future');
             }
-        } else {
+        } else if (todayMMDD === highlightedDay){
             var newTime = timesArray[i] + 12; //for the pm times
             if (timeNowHH == newTime) { //compares the time to moment in HH format
                 inputSelector.addClass('present');
@@ -84,193 +203,143 @@ function colorCode() {
             } else if(timeNowHH < newTime) {
                 inputSelector.addClass('future');
             }
-            
-        } 
+        //if the highlighted day is before today, color code time blocks as 'past'
+        } else if (highlightedDay < todayMMDD){
+            inputSelector.addClass('past');
+        //if the highlighted day is after today, color code time blocks as 'future'
+        } else if (highlightedDay > todayMMDD) {
+            console.log("Future")
+            inputSelector.addClass('future');
+        }
     }
 }
 
-//adds event listener for each button to save the time block entry to local storage and display it at the top of the page for 3.5 seconds
+
+//adds event listener for each save button to save the time block entry to local storage and display it at the top of the page for 3.5 seconds
 function saveData() {
 
-        $('#button0').on("click", function() {
-            var calendarEntry = $('#planner0').val();
-            localStorage.setItem('#planner0', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[0] + "am.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
 
-        $('#button1').on("click", function() {
-            var calendarEntry = $('#planner1').val();
-            localStorage.setItem('#planner1', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[1] + "am.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+    $('.save-btn').on("click", function(event){
+        console.log(highlightedDay)
+        
+        indexVal = event.currentTarget.id.charAt(event.currentTarget.id.length - 1)
+        
+        var calendarEntry = $('#planner'+indexVal).val();
+        console.log(calendarEntry)
 
-        $('#button2').on("click", function() {
-            var calendarEntry = $('#planner2').val();
-            localStorage.setItem('#planner2', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[2] + "am.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+        entryTime = $(event.currentTarget).parent().parent().children()[0].id;
 
-        $('#button3').on("click", function() {
-            var calendarEntry = $('#planner3').val();
-            localStorage.setItem('#planner3', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[3] + "am.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+        // localStorage.setItem(moment().format('MM/DD') + '#planner'+indexVal, calendarEntry);
 
-        $('#button4').on("click", function() {
-            var calendarEntry = $('#planner4').val();
-            localStorage.setItem('#planner4', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[4] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
+        localStorage.setItem(highlightedDay+'#planner'+indexVal, calendarEntry);
+        if (calendarEntry !== "") {
+            if(highlightedDay === todayMMDD) {
+            alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + entryTime + " today." );
+            setTimeout(function(){
+                alertEl.text("")
+            }, 3500);
+            } else {
+            alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + entryTime + " on " + highlightedDay + "." );
+            setTimeout(function(){
+                alertEl.text("")
+            }, 3500);
             }
-        });
+        }
 
-        $('#button5').on("click", function() {
-            var calendarEntry = $('#planner5').val();
-            localStorage.setItem('#planner5', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[5] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+    });
 
-        $('#button6').on("click", function() {
-            var calendarEntry = $('#planner6').val();
-            localStorage.setItem('#planner6', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[6] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+};
 
-        $('#button7').on("click", function() {
-            var calendarEntry = $('#planner7').val();
-            localStorage.setItem('#planner7', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[7] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+//adds event listener for each delete button to remove the time block entry from local storage
+function deleteData() {
 
-        $('#button8').on("click", function() {
-            var calendarEntry = $('#planner8').val();
-            console.log(calendarEntry);
-            console.log("You clicked a button!");
-            localStorage.setItem('#planner8', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[8] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+    $('.delete-btn').on("click", function(event){
+        indexVal = event.currentTarget.id.charAt(event.currentTarget.id.length - 1)
+        console.log(indexVal)
+        
+        var calendarEntry = $('#planner'+indexVal)
 
-        $('#button9').on("click", function() {
-            var calendarEntry = $('#planner9').val();
-            console.log(calendarEntry);
-            console.log("You clicked a button!");
-            localStorage.setItem('#planner9', calendarEntry);
-            if (calendarEntry !== "") {
-                alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + timesArray[9] + "pm.");
-                setTimeout(function(){
-                    alertEl.text("")
-                }, 3500);
-            }
-        });
+        localStorage.removeItem(highlightedDay+'#planner'+indexVal);
+        calendarEntry.val("");
 
-    
-    // }
+        getData();
+
+    });
+
 };
 
 //for each time block, gets information saved to local storage to display
 function getData() {
 
-var EightAmInput = $('#planner0');
-var calendarItem = localStorage.getItem('#planner0');
-EightAmInput.val(calendarItem);
-
-var NineAmInput = $('#planner1');
-var calendarItem = localStorage.getItem('#planner1');
-NineAmInput.val(calendarItem);
-
-var TenAmInput = $('#planner2');
-var calendarItem = localStorage.getItem('#planner2');
-TenAmInput.val(calendarItem);
-
-var ElevenAmInput = $('#planner3');
-var calendarItem = localStorage.getItem('#planner3');
-ElevenAmInput.val(calendarItem);
-
-var TwelvePmInput = $('#planner4');
-var calendarItem = localStorage.getItem('#planner4');
-TwelvePmInput.val(calendarItem);
-
-var OnePmInput = $('#planner5');
-var calendarItem = localStorage.getItem('#planner5');
-OnePmInput.val(calendarItem);
-
-var TwoPmInput = $('#planner6');
-var calendarItem = localStorage.getItem('#planner6');
-TwoPmInput.val(calendarItem);
-
-var ThreePmInput = $('#planner7');
-var calendarItem = localStorage.getItem('#planner7');
-ThreePmInput.val(calendarItem);
-
-var FourPmInput = $('#planner8');
-var calendarItem = localStorage.getItem('#planner8');
-FourPmInput.val(calendarItem);
-
-var FivePmInput = $('#planner9');
-var calendarItem = localStorage.getItem('#planner9');
-FivePmInput.val(calendarItem);
-
+    for(i = 0; i < 10; i++) {
+        
+       var inputEl = '#planner' + i;
+       var selectInput = $(inputEl)
+       selectInput.val("")
+       var storageItem = highlightedDay + inputEl;
+       var localStorageItem = localStorage.getItem(storageItem);
+       if(localStorageItem){
+           selectInput.val(localStorageItem);
+       } 
+    }
 }
 
 //At midnight, the calendar is cleared
-function clearDay() {
-    if (timeNowHH == 24) {
-        localStorage.clear();
-    }
+// function clearDay() {
+//     if (timeNowHH == 24) {
+//         localStorage.clear();
+//     }
+// }
+
+//when one of the calendar blocks at the top is clicked, it un-highlights all of them and highlights the one clicked
+//also it re-assigns the global varible highlightedDay to be the date clicked which feeds into the save data, delete data and get data functions
+function clickCalendar() {
+$('.week').click(function(event){
+    dateClicked = event.currentTarget;
+    idText = dateClicked.children[1].children[0].id
+    calendarDate = $('#'+ idText).text()
+
+    sundayEl.parent().parent().attr('class','card text-center week');
+    mondayEl.parent().parent().attr('class','card text-center week');
+    tuesdayEl.parent().parent().attr('class','card text-center week');
+    wednesdayEl.parent().parent().attr('class','card text-center week');
+    thursdayEl.parent().parent().attr('class','card text-center week');
+    fridayEl.parent().parent().attr('class','card text-center week');
+    saturdayEl.parent().parent().attr('class','card text-center week');
+
+    var cardId = event.currentTarget.id;
+    $('#'+cardId).addClass('highlight');
+
+    
+    highlightedDay = calendarDate;
+    
+    getData();
+    colorCode();
+    // console.log(event.currentTarget.children[1].children[0].TEXT_NODE)
+})
+
+
+
 }
 
 //function to initialize all functions to run
 function init() {
     displayDate();
+    highlightToday();
+    calendarDates();
     createTimeBlocks();
     colorCode();
     saveData();
+    deleteData();
     getData();
-    clearDay();
+    clickCalendar();
 };
+
+//Updates the date every second so that the functions are keeping everything up to date
+setInterval(displayDate, 1000);
+//Updates the color coding on the time blocks every half hour
+setInterval(colorCode, 50000);
+
 
 init();
 
