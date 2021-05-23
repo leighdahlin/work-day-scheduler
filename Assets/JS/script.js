@@ -4,12 +4,15 @@ var containerEl = $('.container');
 var timesArray = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5]; //Array with each hour I want to display on the page
 var timeNowHH = moment().format("HH");
 var alertEl = $('.alert');
+var sundayEl = $('#sunday');
 var mondayEl = $('#monday');
 var tuesdayEl = $('#tuesday');
 var wednesdayEl = $('#wednesday');
 var thursdayEl = $('#thursday');
 var fridayEl = $('#friday');
+var saturdayEl = $('#saturday');
 var today = moment().format('dddd').toLowerCase();
+var todayMMDD = moment().format('MM/DD');
 var highlightedDay = moment().format('MM/DD');
 
 
@@ -22,26 +25,27 @@ function displayDate() {
 
 function highlightToday() {
     switch (today) {
+        case "sunday":
+            sundayEl.parent().parent().addClass('highlight');
+            break;
         case "monday":
             mondayEl.parent().parent().addClass('highlight');
-
             break;
         case "tuesday":
             tuesdayEl.parent().parent().addClass('highlight');
-
             break;
         case "wednesday":
             wednesdayEl.parent().parent().addClass('highlight');
-
             break;
         case "thursday":
             thursdayEl.parent().parent().addClass('highlight');
-
             break;
         case "friday":
             fridayEl.parent().parent().addClass('highlight');
-
             break;  
+        case "saturday":
+            saturdayEl.parent().parent().addClass('highlight');
+            break;
     }
 
 }
@@ -49,51 +53,64 @@ function highlightToday() {
 //display the date in the calendar at the top of the html in MM/DD format for each block
 function calendarDates() {
     var date = moment().format('MM/DD')
-    if(today === "monday") {
-        mondayEl.text(date)
-        tuesdayEl.text(moment().add(1,'days').format('MM/DD'))
-        wednesdayEl.text(moment().add(2,'days').format('MM/DD'))
-        thursdayEl.text(moment().add(3,'days').format('MM/DD'))
-        fridayEl.text(moment().add(4,'days').format('MM/DD'))
-    } else if (today === "tuesday") {
-        mondayEl.text(moment().subtract(1,'days').format('MM/DD'))
-        tuesdayEl.text(date)
-        wednesdayEl.text(moment().add(1,'days').format('MM/DD'))
-        thursdayEl.text(moment().add(2,'days').format('MM/DD'))
-        fridayEl.text(moment().add(3,'days').format('MM/DD'))
-    } else if (today === "wednesday") {
-        mondayEl.text(moment().subtract(2,'days').format('MM/DD'))
-        tuesdayEl.text(moment().subtract(1,'days').format('MM/DD'))
-        wednesdayEl.text(date)
-        thursdayEl.text(moment().add(1,'days').format('MM/DD'))
-        fridayEl.text(moment().add(2,'days').format('MM/DD'))
-    } else if (today === "thursday") {
-        mondayEl.text(moment().subtract(3,'days').format('MM/DD'))
-        tuesdayEl.text(moment().subtract(2,'days').format('MM/DD'))
-        wednesdayEl.text(moment().subtract(1,'days').format('MM/DD'))
-        thursdayEl.text(date)
-        fridayEl.text(moment().add(1,'days').format('MM/DD'))
-    } else if (today === "friday") {
-        mondayEl.text(moment().subtract(4,'days').format('MM/DD'))
-        tuesdayEl.text(moment().subtract(3,'days').format('MM/DD'))
-        wednesdayEl.text(moment().subtract(2,'days').format('MM/DD'))
-        thursdayEl.text(moment().subtract(1,'days').format('MM/DD'))
-        fridayEl.text(date)
-    } else if (today === "saturday") {
-        mondayEl.text(moment().subtract(5,'days').format('MM/DD'))
-        tuesdayEl.text(moment().subtract(4,'days').format('MM/DD'))
-        wednesdayEl.text(moment().subtract(3,'days').format('MM/DD'))
-        thursdayEl.text(moment().subtract(2,'days').format('MM/DD'))
-        fridayEl.text(moment().subtract(1,'days').format('MM/DD'))
-    } else if (today === "sunday") {
+    if(today === "sunday") {
+        sundayEl.text(date);
         mondayEl.text(moment().add(1,'days').format('MM/DD'))
         tuesdayEl.text(moment().add(2,'days').format('MM/DD'))
         wednesdayEl.text(moment().add(3,'days').format('MM/DD'))
         thursdayEl.text(moment().add(4,'days').format('MM/DD'))
         fridayEl.text(moment().add(5,'days').format('MM/DD'))
-
-        localStorage.clear();
+        saturdayEl.text(moment().add(6,'days').format('MM/DD'))
+    } else if(today === "monday") {
+        sundayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        mondayEl.text(date)
+        tuesdayEl.text(moment().add(1,'days').format('MM/DD'))
+        wednesdayEl.text(moment().add(2,'days').format('MM/DD'))
+        thursdayEl.text(moment().add(3,'days').format('MM/DD'))
+        fridayEl.text(moment().add(4,'days').format('MM/DD'))
+        saturdayEl.text(moment().add(5,'days').format('MM/DD'))
     }
+    else if (today === "tuesday") {
+        sundayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        tuesdayEl.text(date)
+        wednesdayEl.text(moment().add(1,'days').format('MM/DD'))
+        thursdayEl.text(moment().add(2,'days').format('MM/DD'))
+        fridayEl.text(moment().add(3,'days').format('MM/DD'))
+        saturdayEl.text(moment().add(4,'days').format('MM/DD'))
+    } else if (today === "wednesday") {
+        sundayEl.text(moment().subtract(3,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        tuesdayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        wednesdayEl.text(date)
+        thursdayEl.text(moment().add(1,'days').format('MM/DD'))
+        fridayEl.text(moment().add(2,'days').format('MM/DD'))
+        saturdayEl.text(moment().add(3,'days').format('MM/DD'))
+    } else if (today === "thursday") {
+        sundayEl.text(moment().subtract(4,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(3,'days').format('MM/DD'))
+        tuesdayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        wednesdayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        thursdayEl.text(date)
+        fridayEl.text(moment().add(1,'days').format('MM/DD'))
+        saturdayEl.text(moment().add(2,'days').format('MM/DD'))
+    } else if (today === "friday") {
+        sundayEl.text(moment().subtract(5,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(4,'days').format('MM/DD'))
+        tuesdayEl.text(moment().subtract(3,'days').format('MM/DD'))
+        wednesdayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        thursdayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        fridayEl.text(date)
+        saturdayEl.text(moment().add(1,'days').format('MM/DD'))
+    } else if (today === "saturday") {
+        sun.text(moment().subtract(6,'days').format('MM/DD'))
+        mondayEl.text(moment().subtract(5,'days').format('MM/DD'))
+        tuesdayEl.text(moment().subtract(4,'days').format('MM/DD'))
+        wednesdayEl.text(moment().subtract(3,'days').format('MM/DD'))
+        thursdayEl.text(moment().subtract(2,'days').format('MM/DD'))
+        fridayEl.text(moment().subtract(1,'days').format('MM/DD'))
+        saturdayEl.text(date)
+    } 
 
 }
 
@@ -165,9 +182,9 @@ function colorCode() {
    for (i = 0; i < timesArray.length; i++) { 
     var inputId = 'planner' + i;
     var inputSelector = $('#'+ inputId);
-
-        if(timesArray[i] > 7 && timesArray[i] <= 12) { //for the am times
-
+        console.log("Highlighted day: " + highlightedDay);
+        console.log("Today: " + todayMMDD);
+        if(todayMMDD === highlightedDay && timesArray[i] > 7 && timesArray[i] <= 12) { //for the am times
             if (timeNowHH == timesArray[i]) { //compares the time to moment in HH format
                 inputSelector.addClass('present');
             } else if(timeNowHH > timesArray[i]){
@@ -175,7 +192,7 @@ function colorCode() {
             } else if(timeNowHH < timesArray[i]) {
                 inputSelector.addClass('future');
             }
-        } else {
+        } else if (todayMMDD === highlightedDay){
             var newTime = timesArray[i] + 12; //for the pm times
             if (timeNowHH == newTime) { //compares the time to moment in HH format
                 inputSelector.addClass('present');
@@ -208,7 +225,7 @@ function saveData() {
 
         localStorage.setItem(highlightedDay+'#planner'+indexVal, calendarEntry);
         if (calendarEntry !== "") {
-            alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + entryTime + " " + highlightedDay + "." );
+            alertEl.text('You added "' + calendarEntry + '" to your schedule at ' + entryTime + " on " + highlightedDay + "." );
             setTimeout(function(){
                 alertEl.text("")
             }, 3500);
@@ -267,11 +284,13 @@ $('.week').click(function(event){
     idText = dateClicked.children[1].children[0].id
     calendarDate = $('#'+ idText).text()
 
+    sundayEl.parent().parent().attr('class','card text-center week');
     mondayEl.parent().parent().attr('class','card text-center week');
     tuesdayEl.parent().parent().attr('class','card text-center week');
     wednesdayEl.parent().parent().attr('class','card text-center week');
     thursdayEl.parent().parent().attr('class','card text-center week');
     fridayEl.parent().parent().attr('class','card text-center week');
+    saturdayEl.parent().parent().attr('class','card text-center week');
 
     var cardId = event.currentTarget.id;
     $('#'+cardId).addClass('highlight');
@@ -280,6 +299,7 @@ $('.week').click(function(event){
     highlightedDay = calendarDate;
     
     getData();
+    colorCode();
     // console.log(event.currentTarget.children[1].children[0].TEXT_NODE)
 })
 

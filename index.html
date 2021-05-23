@@ -27,23 +27,29 @@
 
   <body>
     <header class="jumbotron">
-      <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <h1 class="display-3">Day Scheduler</h1>
+      <p class="lead">A simple calendar app for scheduling your day</p>
       <p id="currentDay" class="lead"></p>
     </header>
     <div class = "week-cards">
       <p class="week-card-explain">Click on one of the dates below to edit your schedule for that day.</p>
       <div class="card-group ">
+        <div id="sun" class="card text-center week">
+          <div class="card-header">Sun</div>
+          <div class="card-body">
+            <p id="sunday" class="card-text"></p>
+          </div>
+        </div>
         <div id="mon" class="card text-center week">
           <div class="card-header">Mon</div>
           <div class="card-body">
-            <p id="monday" class="card-text">5/10</p>
+            <p id="monday" class="card-text"></p>
           </div>
         </div>
         <div id="tues" class="card text-center week">
           <div class="card-header">Tues</div>
           <div class="card-body">
-            <p id="tuesday" class="card-text">5/11</p>
+            <p id="tuesday" class="card-text"></p>
           </div>
         </div>
         <div id="wed" class="card text-center week">
@@ -62,6 +68,12 @@
           <div class="card-header">Fri</div>
           <div class="card-body">
             <p id="friday" class="card-text"></p>
+          </div>
+        </div>
+        <div id="sat" class="card text-center week">
+          <div class="card-header">Sat</div>
+          <div class="card-body">
+            <p id="saturday" class="card-text"></p>
           </div>
         </div>
       </div>
